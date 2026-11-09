@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>流界 FlowAcross：一套键鼠，自由跨屏</title>
+    <meta
+      name="description"
+      content="流界让一套键盘鼠标控制桌上的多台电脑。鼠标移过屏幕相贴的边，就进入另一台电脑，键盘和剪贴板一起过去。支持 macOS 与 Windows 互控，局域网直连，端到端加密，无需账号。"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f3f5f8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a101d" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="流界 FlowAcross：一套键鼠，自由跨屏" />
+    <meta property="og:description" content="macOS 与 Windows 互控，局域网直连，端到端加密，无需账号。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://flow.bapihou.com/" />
+    <meta property="og:image" content="https://flow.bapihou.com/assets/logo.png" />
+    <link rel="canonical" href="https://flow.bapihou.com/" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="preload" href="assets/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">跳到正文</a>
+
+    <header class="nav" id="nav">
+      <div class="wrap nav-row">
+        <a class="brand" href="#top" aria-label="流界 FlowAcross 首页">
+          <img src="assets/logo.png" width="28" height="28" alt="" />
+          <span class="brand-cn">流界</span>
+          <span class="brand-en">FlowAcross</span>
+        </a>
+        <nav class="nav-links" aria-label="页面导航">
+          <a href="#features">功能</a>
+          <a href="#start">上手</a>
+          <a href="#security">安全</a>
+          <a href="#faq">常见问题</a>
+        </nav>
+        <a class="btn btn-primary btn-sm" href="#download">下载</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 首屏 ============ -->
+      <section class="hero" id="top">
+        <div class="wrap hero-copy">
+          <p class="eyebrow"><span class="tag">v0.1.4</span>早期版本，macOS 与 Windows 均可下载</p>
+          <h1>一套键鼠，<br class="br-sm" />自由跨屏。</h1>
+          <p class="lede">
+            把屏幕按桌上的摆放排好，鼠标移过相贴的边，就进入了另一台电脑。键盘和剪贴板跟着一起过去。Mac 和
+            Windows 互相控制，局域网直连，端到端加密，不用注册账号。
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="https://github.com/Hearion/FlowAcross-releases/releases/latest" data-os-cta>
+              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14" /></svg>
+              <span data-os-label>下载流界</span>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#demo">先在这里试试</a>
+          </div>
+          <p class="cta-note" data-os-note>macOS（Apple 芯片与 Intel 通用）和 Windows 10 及以上</p>
+        </div>
+
+        <!-- 交互演示：和应用里的布局图同一套画法 -->
+        <div class="wrap">
+          <figure class="demo" id="demo">
+            <div class="stage" id="stage" role="group" aria-label="交互演示：两台电脑的屏幕并排摆放">
+              <input
+                class="demo-input"
+                id="demo-input"
+                type="text"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                aria-label="演示输入：打的字会出现在键鼠所在的那块屏幕上"
+                aria-describedby="demo-hint"
+              />
+              <div class="stage-inner" id="stage-inner">
+                <div class="screen hue-0" data-screen="0">
+                  <div class="screen-win" aria-hidden="true">
+                    <span class="win-bar"><i></i><i></i><i></i></span>
+                    <p class="win-text"><span class="typed"></span><span class="caret"></span></p>
+                  </div>
+                  <div class="screen-foot">
+                    <span class="screen-name">MacBook Pro</span>
+                    <span class="screen-os">macOS，1512 × 982</span>
+                  </div>
+                  <span class="pill">控制中</span>
+                </div>
+                <div class="screen hue-1" data-screen="1">
+                  <div class="screen-win" aria-hidden="true">
+                    <span class="win-bar"><i></i><i></i><i></i></span>
+                    <p class="win-text"><span class="typed"></span><span class="caret"></span></p>
+                  </div>
+                  <div class="screen-foot">
+                    <span class="screen-name">书房台式机</span>
+                    <span class="screen-os">Windows，2560 × 1440</span>
+                  </div>
+                  <span class="pill">控制中</span>
+                </div>
+                <span class="seam" id="seam" aria-hidden="true"></span>
+                <span class="dwell" id="dwell" aria-hidden="true"
+                  ><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" /></svg
+                ></span>
+                <span class="cursor" id="cursor" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24"><path d="M5 3l14 7.5-6.2 1.6L10 18.5z" /></svg
+                ></span>
+              </div>
+            </div>
+            <figcaption class="demo-bar">
+              <p class="status" aria-live="polite">
+                <span class="dot" aria-hidden="true"></span>键鼠在&nbsp;<b id="status-name">MacBook Pro</b>
+              </p>
+              <label class="switch">
+                <input type="checkbox" id="dwell-toggle" />
+                <span class="track" aria-hidden="true"></span>
+                贴边停留 0.3 秒才跨屏
+              </label>
+              <p class="hint" id="demo-hint">
+                把鼠标移过<span class="seam-chip" aria-hidden="true"></span>蓝色接缝，或点一下画布后按
+                <kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>←</kbd><kbd>→</kbd> 切换，再随手打几个字。
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ 功能 ============ -->
+      <section class="section" id="features" aria-labelledby="features-title">
+        <div class="wrap">
+          <header class="section-head">
+            <p class="kicker">功能</p>
+            <h2 id="features-title">像同一台电脑的两块屏幕那样用</h2>
+            <p>不用切输入、不用找另一套键盘。光标往哪去，键盘就跟到哪。</p>
+          </header>
+
+          <ul class="features">
+            <li>
+              <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2.5" y="5" width="8.5" height="12" rx="1.5" /><rect x="13" y="5" width="8.5" height="12" rx="1.5" /><path d="M12 8v6" class="acc" />
+              </svg>
+              <h3>移过相贴的边就跨屏</h3>
+              <p>按真实摆放拖动屏幕，自动吸附到相邻边缘。多显示器照样排；只有真正贴着的边才能跨过去。</p>
+            </li>
+            <li>
+              <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7.5 3v5.5c0 4.5-3.2 8-7.5 9.5-4.3-1.5-7.5-5-7.5-9.5V6z" /><path d="M9 12l2 2 4-4" />
+              </svg>
+              <h3>不会一不小心跨过去</h3>
+              <p>可选按住修饰键才跨屏、贴边停留一会儿才跨屏、角落死区。按着鼠标拖东西时不会切换。</p>
+            </li>
+            <li>
+              <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2.5" y="6" width="19" height="12" rx="2" /><path d="M6.5 10h1M10.5 10h1M14.5 10h1M8 14h8" />
+              </svg>
+              <h3>快捷键切换与锁定</h3>
+              <p>
+                <kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>←</kbd><kbd>→</kbd>
+                直接切到左右相邻的电脑。打游戏或演示时，锁定把键鼠留在当前这台。
+              </p>
+            </li>
+            <li>
+              <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="6" y="4" width="12" height="17" rx="2" /><path d="M9 4.5V3h6v1.5M9.5 11h5M9.5 15h5" />
+              </svg>
+              <h3>共享剪贴板</h3>
+              <p>在这台复制一段文字，到那台直接粘贴。不会来回回传，也可以单独关掉。</p>
+            </li>
+            <li>
+              <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 7h10M7 7l3-3M7 7l3 3M17 17H7m10 0l-3-3m3 3l-3 3" />
+              </svg>
+              <h3>⌘ 与 Ctrl 自动互换</h3>
+              <p>用 Mac 键盘控制 Windows 时，<kbd>⌘</kbd><kbd>C</kbd> 就是 <kbd>Ctrl</kbd><kbd>C</kbd>，手上的习惯不用改。</p>
+            </li>
+            <li>
+              <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 12a8 8 0 0113.7-5.6L20 8.7M20 4v4.7h-4.7M20 12a8 8 0 01-13.7 5.6L4 15.3M4 20v-4.7h4.7" />
+              </svg>
+              <h3>断网也不卡键</h3>
+              <p>断网、超时或出错时，先松开远端所有按键、把键鼠还给本机，再告诉你原因和处理办法。</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 上手 ============ -->
+      <section class="section section-alt" id="start" aria-labelledby="start-title">
+        <div class="wrap">
+          <header class="section-head">
+            <p class="kicker">上手</p>
+            <h2 id="start-title">三步，几分钟</h2>
+          </header>
+
+          <ol class="steps">
+            <li>
+              <span class="step-no">1</span>
+              <h3>两台电脑都装上流界</h3>
+              <p>Mac 第一次打开时，按提示在系统设置里打开「辅助功能」和「输入监控」，流界才能读取和发送键鼠。</p>
+            </li>
+            <li>
+              <span class="step-no">2</span>
+              <h3>核对配对码</h3>
+              <p>同一局域网里的电脑会自动出现。两边显示同一个 6 位码，逐位核对后确认。</p>
+              <div class="code" aria-label="配对码示例 428916">
+                <span>4</span><span>2</span><span>8</span><span>9</span><span>1</span><span>6</span>
+              </div>
+            </li>
+            <li>
+              <span class="step-no">3</span>
+              <h3>照桌面摆好屏幕</h3>
+              <p>在布局图里把屏幕拖到和桌上一样的位置。亮起蓝色接缝的地方，鼠标就能跨过去。</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ 安全 ============ -->
+      <section class="section" id="security" aria-labelledby="security-title">
+        <div class="wrap split">
+          <header class="section-head">
+            <p class="kicker">安全与隐私</p>
+            <h2 id="security-title">键盘输入只在你的局域网里走</h2>
+            <p>你敲的每一个键都可能是密码。所以流界没有服务器、没有账号，也不需要联网登录。</p>
+          </header>
+
+          <div>
+            <div class="p2p" aria-hidden="true">
+              <span class="node">MacBook Pro</span>
+              <span class="wire"><span class="lock"
+                ><svg class="i" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V8a4 4 0 018 0v3" /></svg
+              ></span></span>
+              <span class="node">书房台式机</span>
+              <span class="cloud">
+                <svg class="i" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 00.6-8A6 6 0 006.2 9.5 4.3 4.3 0 007 18z" /><path d="M4 4l16 16" /></svg>
+                不经过任何服务器
+              </span>
+            </div>
+            <dl class="facts">
+              <div>
+                <dt>局域网直连</dt>
+                <dd>设备之间点对点连接，通过局域网广播互相发现，数据不出你的网络。</dd>
+              </div>
+              <div>
+                <dt>端到端加密</dt>
+                <dd>基于 QUIC 和 TLS 1.3，双方各持一张证书，连接时互相验证身份。</dd>
+              </div>
+              <div>
+                <dt>配对过才能控制</dt>
+                <dd>只有核对过配对码的电脑才能连接。任意一边移除设备，两边同时删除。</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 手感 ============ -->
+      <section class="section section-alt" id="feel" aria-labelledby="feel-title">
+        <div class="wrap split">
+          <header class="section-head">
+            <p class="kicker">手感</p>
+            <h2 id="feel-title">为跟手而设计的细节</h2>
+            <p>跨屏好不好用，差别在几十毫秒里。这些是我们在 Mac 和 Windows 真机上一项项调出来的。</p>
+          </header>
+
+          <table class="spec">
+            <caption class="sr">传输与手感细节</caption>
+            <tbody>
+              <tr>
+                <th scope="row">鼠标位置</th>
+                <td>走不可靠数据报，网络停顿后直接跳到最新位置，不排队补帧</td>
+              </tr>
+              <tr>
+                <th scope="row">按键</th>
+                <td>走可靠流，按下和松开一个不丢</td>
+              </tr>
+              <tr>
+                <th scope="row">剪贴板</th>
+                <td>单独一条流，大段文字不会挡住键鼠</td>
+              </tr>
+              <tr>
+                <th scope="row">缩放无关</th>
+                <td>按逻辑点移动，4K@200% 和 1080p@100% 之间移动距离的手感一致</td>
+              </tr>
+              <tr>
+                <th scope="row">低延迟模式</th>
+                <td>仅 macOS：有设备连着时临时关闭 AWDL，消除 Wi‑Fi 每秒一次的卡顿</td>
+              </tr>
+              <tr>
+                <th scope="row">兜底释放</th>
+                <td>控制期间每 <span class="num">500 ms</span> 一次心跳，<span class="num">3 s</span> 没消息就松开全部按键</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ 下载 ============ -->
+      <section class="section" id="download" aria-labelledby="download-title">
+        <div class="wrap">
+          <header class="section-head">
+            <p class="kicker">下载</p>
+            <h2 id="download-title">两台电脑装同一个版本</h2>
+            <p>当前版本 v0.1.4。装好后会自动检查更新，提示后一键升级。</p>
+          </header>
+
+          <div class="dl">
+            <a class="dl-card" href="https://github.com/Hearion/FlowAcross-releases/releases/latest" data-os="mac">
+              <svg class="i dl-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="4.5" width="16" height="11" rx="1.5" /><path d="M2 19h20" />
+              </svg>
+              <span class="dl-body">
+                <span class="dl-title">macOS</span>
+                <span class="dl-meta">.dmg，Apple 芯片与 Intel 通用</span>
+              </span>
+              <span class="dl-go">下载<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v12m0 0l-5-5m5 5l5-5" /></svg></span>
+            </a>
+            <a class="dl-card" href="https://github.com/Hearion/FlowAcross-releases/releases/latest" data-os="win">
+              <svg class="i dl-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2.5" y="4" width="19" height="12.5" rx="1.5" /><path d="M9 20h6M12 16.5V20" />
+              </svg>
+              <span class="dl-body">
+                <span class="dl-title">Windows</span>
+                <span class="dl-meta">.exe 安装包，Windows 10 及以上</span>
+              </span>
+              <span class="dl-go">下载<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v12m0 0l-5-5m5 5l5-5" /></svg></span>
+            </a>
+          </div>
+
+          <p class="notice">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>
+            <span>
+              这是早期版本：跨屏控制已经实现，正在 Mac 与 Windows 真机上逐项验证，偶尔可能遇到问题。安装包暂未完成签名，第一次打开的办法见下方常见问题。
+            </span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 常见问题 ============ -->
+      <section class="section section-alt" id="faq" aria-labelledby="faq-title">
+        <div class="wrap split">
+          <header class="section-head">
+            <p class="kicker">常见问题</p>
+            <h2 id="faq-title">装之前你可能想知道</h2>
+          </header>
+
+          <div class="faq">
+            <details>
+              <summary>两台电脑必须在同一个网络里吗？</summary>
+              <p>是的，需要连在同一个路由器或 Wi‑Fi 下。流界在局域网里自动发现设备，不经过互联网。条件允许的话用网线连接，跨屏最稳。</p>
+            </details>
+            <details>
+              <summary>Mac 上为什么要打开「辅助功能」和「输入监控」？</summary>
+              <p>
+                流界要读取你在这台 Mac 上的键鼠操作（才能把它送到另一台），被控制时还要模拟按键和点击。这两项权限缺一不可。键鼠数据只在配对过的设备之间加密传输，不会上传到任何地方。
+              </p>
+            </details>
+            <details>
+              <summary>第一次打开时提示「无法验证开发者」或「Windows 已保护你的电脑」？</summary>
+              <p>
+                安装包目前还没有完成苹果公证和 Windows 代码签名，所以系统会拦一下。macOS：在「访达」里右键点流界选「打开」，或到「系统设置 › 隐私与安全性」点「仍要打开」。Windows：点「更多信息」，再点「仍要运行」。
+              </p>
+            </details>
+            <details>
+              <summary>Mac 用 Wi‑Fi 时，鼠标每秒顿一下怎么办？</summary>
+              <p>
+                这是 macOS 的 AWDL（隔空投送、随航等功能用的无线通道）周期性占用网卡造成的。在流界设置里打开「低延迟模式」，有设备连着时会临时关闭 AWDL，断开后自动恢复；也可以改用网线。
+              </p>
+            </details>
+            <details>
+              <summary>能复制图片、拖文件过去吗？支持 Linux 吗？</summary>
+              <p>现在的剪贴板只同步文字。图片和文件的复制粘贴、跨屏拖拽传输、Linux 支持都在后续版本的计划里。</p>
+            </details>
+            <details>
+              <summary>怎么更新？更新时会不会卡住键鼠？</summary>
+              <p>流界启动后会定期检查新版本，发现后在主界面提示。点「立即更新」后会先校验安装包签名，再松开远端按键、把键鼠还给本机，然后安装并自动重新打开。</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 收尾 ============ -->
+      <section class="final">
+        <div class="wrap final-row">
+          <h2>让桌上的电脑，<br class="br-sm" />共用一套键鼠。</h2>
+          <a class="btn btn-primary btn-lg" href="#download">下载流界</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot-row">
+        <span class="brand brand-foot">
+          <img src="assets/logo.png" width="22" height="22" alt="" />
+          <span class="brand-cn">流界</span>
+          <span class="brand-en">FlowAcross</span>
+        </span>
+        <span class="foot-tag">一套键鼠，自由跨屏。</span>
+        <nav class="foot-links" aria-label="页脚链接">
+          <a href="#download">下载</a>
+          <a href="https://github.com/Hearion/FlowAcross-releases/releases">版本记录</a>
+          <a href="#faq">常见问题</a>
+        </nav>
+        <small>© 2026 流界 FlowAcross</small>
+      </div>
+    </footer>
+
+    <script src="main.js" defer></script>
+  </body>
+</html>
