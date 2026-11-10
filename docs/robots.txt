@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flow.bapihou.com/sitemap.xml

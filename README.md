@@ -2,6 +2,8 @@
 
 **一套键鼠，自由跨屏。**
 
+[流界官网：Mac 与 Windows 键鼠共享软件下载](https://flow.bapihou.com/)
+
 把几台电脑放在桌上，鼠标从一台的屏幕边缘移出，就出现在相邻电脑的屏幕上，键盘随之切换，复制的文字和文件也能直接在另一台粘贴。支持 Windows 与 macOS 互相控制，局域网直连、端到端加密，不需要注册账号。
 
 ## 下载
@@ -69,3 +71,12 @@
 ---
 
 本仓库只存放安装包、更新文件和官网页面（`docs/`），不包含源代码。
+
+## 官网维护
+
+官网是 `docs/` 下的静态页面，自定义域名由 `docs/CNAME` 指定。
+
+- 首页标题、描述、分享信息和 JSON-LD 结构化数据集中在 `docs/index.html`，修改产品能力时同步维护，保持与可见正文一致。
+- `docs/robots.txt` 声明抓取入口，`docs/sitemap.xml` 只列出正式域名下的可索引页面。新增页面时补入 sitemap，不加入页面锚点或安装包链接；仅在能准确维护时填写 `lastmod`。
+- 发布后检查 `/robots.txt`、`/sitemap.xml` 和分享图片能正常访问。在 Google Search Console / Bing Webmaster Tools 验证域名后提交 `https://flow.bapihou.com/sitemap.xml`，通过 URL 检查确认首页可抓取及 canonical。
+- JSON-LD 可用 Schema Markup Validator 检查。软件信息只描述已提供的能力，不虚构价格、评分或评论；结构化数据不代表一定获得富媒体搜索结果。
