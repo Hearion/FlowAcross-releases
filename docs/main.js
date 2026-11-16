@@ -23,7 +23,7 @@
     var ua = navigator.userAgent;
     var touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1; // iPadOS 伪装成 Mac
     var mobile = /iPhone|iPad|iPod|Android/.test(ua) || touchMac;
-    var os = mobile ? "mobile" : /Macintosh|Mac OS X/.test(ua) ? "mac" : /Windows/.test(ua) ? "win" : "other";
+    var os = mobile ? "mobile" : /Macintosh|Mac OS X/.test(ua) ? "mac" : /Windows/.test(ua) ? "win" : /Linux|X11/.test(ua) ? "linux" : "other";
 
     var cta = document.querySelector("[data-os-cta]");
     var label = document.querySelector("[data-os-label]");
@@ -43,10 +43,16 @@
         rec.textContent = "这台电脑";
         card.querySelector(".dl-title").appendChild(rec);
       }
+    } else if (os === "linux") {
+      label.textContent = "下载 Linux 测试版";
+      cta.setAttribute("href", "#download");
+      note.innerHTML = 'Linux 版是测试版，x86_64，仅支持 X11 会话。Mac 和 Windows 版<a href="#download">也在这里下载</a>';
+      var linuxCard = document.querySelector('.dl-card[data-os="linux"]');
+      if (linuxCard) linuxCard.classList.add("recommended");
     } else if (os === "mobile") {
       label.textContent = "查看下载";
       cta.setAttribute("href", "#download");
-      note.textContent = "流界运行在 Mac 和 Windows 上，可以在电脑上打开本页下载。";
+      note.textContent = "流界运行在 Mac 和 Windows 上（Linux 为测试版），可以在电脑上打开本页下载。";
     }
   })();
 
