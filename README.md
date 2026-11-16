@@ -4,7 +4,7 @@
 
 [流界官网：Mac 与 Windows 键鼠共享软件下载](https://flow.bapihou.com/)
 
-把几台电脑放在桌上，鼠标从一台的屏幕边缘移出，就出现在相邻电脑的屏幕上，键盘随之切换，复制的文字和文件也能直接在另一台粘贴。支持 Windows 与 macOS 互相控制，局域网直连、端到端加密，不需要注册账号。
+把几台电脑放在桌上，鼠标从一台的屏幕边缘移出，就出现在相邻电脑的屏幕上，键盘随之切换，复制的文字、文件和截图也能直接在另一台粘贴。支持 Windows 与 macOS 互相控制，局域网直连、端到端加密，不需要注册账号。Linux（X11 会话）提供测试版。
 
 ## 下载
 
@@ -16,6 +16,8 @@
 | macOS（Intel 和 Apple 芯片通用） | `FlowAcross_x.y.z_universal.dmg` | 打开后把 FlowAcross 拖进「应用程序」 |
 
 其他文件（`.sig`、`.app.tar.gz`、`latest.json`）供应用内自动更新使用，不用下载。
+
+**Linux 测试版**不在「最新版本」里：到 [版本列表](https://github.com/Hearion/FlowAcross-releases/releases) 找带 Pre-release 标记的版本（版本号带后缀，如 `v0.2.2-beta.1`），下载 x86_64 的 `.deb` 或 `.AppImage`。
 
 ## 安装
 
@@ -30,6 +32,15 @@
 1. 打开 `.dmg`，把 FlowAcross 拖进「应用程序」。
 2. 第一次打开时会提示「无法验证开发者」：到「系统设置 → 隐私与安全性」，在页面下方点「仍要打开」。
 3. 按引导授予「辅助功能」和「输入监控」权限（用于捕获和模拟键盘鼠标），以及「本地网络」权限（用于发现其他电脑）。授予「输入监控」后可能需要退出并重新打开流界。
+
+### Linux（测试版）
+
+1. Debian / Ubuntu 用 `sudo apt install ./下载的文件.deb` 安装；其他发行版用 `.AppImage`：`chmod +x` 后直接运行。
+2. 只支持 X11 会话。在 Wayland 会话里流界会提示注销，在登录界面改选「Xorg / X11」后再登录。
+3. GNOME 默认不显示托盘图标，需要安装 AppIndicator 扩展；开着防火墙时要手动放行流界。
+4. 测试版没有应用内自动更新，新版本要回到版本列表手动下载。
+
+Linux 版还没有在真实桌面上充分验证，遇到问题欢迎到 [Issues](https://github.com/Hearion/FlowAcross-releases/issues) 反馈。
 
 ## 开始使用
 
@@ -59,6 +70,7 @@
 - macOS 输入密码时（安全输入模式）系统会屏蔽键盘捕获。
 - 公司网络、酒店和公共 Wi‑Fi 常会屏蔽设备发现，可以先用家里的网络或手机热点测试。
 - Mac 使用 Wi‑Fi 时，跨屏可能每秒卡一下。这是 macOS 的 AWDL（隔空投送、接力、通用控制用的点对点 Wi‑Fi）定期切换信道造成的网络停顿。在 Mac 的流界里打开「设置 → 跨屏与键鼠 → 低延迟模式」即可解决：有电脑连着时自动关闭 AWDL，断开后恢复（开启期间隔空投送、接力、通用控制暂不可用，第一次开启需要输入一次 Mac 密码）。Mac 接有线网络时不需要开启。
+- Linux 版是测试版：只支持 X11 会话（不支持 Wayland），没有应用内自动更新，正式版暂不带 Linux 安装包。
 - 剪贴板同步文字、文件和图片（截图），富文本格式暂不同步。图片直接粘贴需要两台电脑都是 0.2.0 或更新的版本，单张不超过 64 MB；旧版设备收到的是一个 PNG 文件。
 
 ## 遇到问题
@@ -76,6 +88,8 @@
 
 官网是 `docs/` 下的静态页面，自定义域名由 `docs/CNAME` 指定。
 
+- 页面由 `docs/index.html`（内容与结构）、`docs/styles.css`（样式，跟随系统浅色 / 深色）和 `docs/main.js`（首屏交互演示、按访问者系统推荐下载、滚动淡入等效果）组成，没有构建步骤，改完推送到 `main` 即上线。
+- 官网的视觉比应用多一层表现（网格、光晕、渐变、卡片动效），只用在官网，说明见 `docs/styles.css` 开头的注释。改样式后在浅色、深色和手机宽度下各看一遍。
 - 首页标题、描述、分享信息和 JSON-LD 结构化数据集中在 `docs/index.html`，修改产品能力时同步维护，保持与可见正文一致。
 - `docs/robots.txt` 声明抓取入口，`docs/sitemap.xml` 只列出正式域名下的可索引页面。新增页面时补入 sitemap，不加入页面锚点或安装包链接；仅在能准确维护时填写 `lastmod`。
 - 发布后检查 `/robots.txt`、`/sitemap.xml` 和分享图片能正常访问。在 Google Search Console / Bing Webmaster Tools 验证域名后提交 `https://flow.bapihou.com/sitemap.xml`，通过 URL 检查确认首页可抓取及 canonical。
