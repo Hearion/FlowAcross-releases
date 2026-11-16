@@ -50,8 +50,10 @@
             "name": "流界 FlowAcross 官网｜Mac 与 Windows 键鼠共享软件下载",
             "description": "让两台或多台电脑共用一套键盘鼠标，支持 Mac 与 Windows 跨屏控制，以及文字、文件和图片的跨设备复制粘贴。",
             "inLanguage": "zh-CN",
+            "dateModified": "2026-11-17",
             "isPartOf": { "@id": "https://flow.bapihou.com/#website" },
-            "mainEntity": { "@id": "https://flow.bapihou.com/#software" }
+            "mainEntity": { "@id": "https://flow.bapihou.com/#software" },
+            "hasPart": { "@id": "https://flow.bapihou.com/#faq" }
           },
           {
             "@type": "SoftwareApplication",
@@ -66,7 +68,125 @@
             "downloadUrl": "https://github.com/Hearion/FlowAcross-releases/releases/latest",
             "releaseNotes": "https://github.com/Hearion/FlowAcross-releases/releases",
             "sameAs": "https://github.com/Hearion/FlowAcross-releases",
+            "isAccessibleForFree": true,
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
             "featureList": ["跨电脑键鼠共享", "多显示器布局", "文本剪贴板同步", "文件复制传输", "图片与截图复制粘贴", "跨屏边缘浮光提示", "局域网直连与端到端加密"]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://flow.bapihou.com/#faq",
+            "url": "https://flow.bapihou.com/#faq",
+            "name": "键鼠共享与安装常见问题",
+            "inLanguage": "zh-CN",
+            "isPartOf": {
+              "@id": "https://flow.bapihou.com/#webpage"
+            },
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Mac 和 Windows 可以共用一套键盘鼠标吗？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "可以。在两台电脑上安装流界 FlowAcross，连接同一个局域网，核对配对码后按桌上的位置排好屏幕。鼠标移过相贴的屏幕边缘就切到另一台电脑，键盘随之切换，也能用 Ctrl + Alt + ←/→ 切换。查看上手步骤。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "使用流界需要 KVM 切换器或专用键鼠吗？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "不需要额外的硬件切换器或专用键盘鼠标。流界通过局域网把键鼠操作发送到配对电脑，每台电脑使用自己的显示器；它不传输屏幕画面。下载对应系统的安装包后即可配对。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "两台电脑必须在同一个网络里吗？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "是的，需要连在同一个路由器或 Wi‑Fi 下。流界在局域网里自动发现设备，不经过互联网。条件允许的话用网线连接，跨屏最稳。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Mac 上为什么要打开「辅助功能」和「输入监控」？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "流界要读取你在这台 Mac 上的键鼠操作（才能把它送到另一台），被控制时还要模拟按键和点击。这两项权限缺一不可。键鼠数据只在配对过的设备之间加密传输，不会上传到任何地方。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "第一次打开时提示「无法验证开发者」或「Windows 已保护你的电脑」？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "安装包目前还没有完成苹果公证和 Windows 代码签名，所以系统会拦一下。macOS：在「访达」里右键点流界选「打开」，或到「系统设置 › 隐私与安全性」点「仍要打开」。Windows：点「更多信息」，再点「仍要运行」。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Mac 用 Wi‑Fi 时，鼠标每秒顿一下怎么办？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "这是 macOS 的 AWDL（隔空投送、随航等功能用的无线通道）周期性占用网卡造成的。在流界设置里打开「低延迟模式」，有设备连着时会临时关闭 AWDL，断开后自动恢复；也可以改用网线。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "能复制文件和图片吗？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "都可以。在一台电脑上复制文字、文件（访达、资源管理器里复制也行），或者截图、复制一张图片，把键鼠切到另一台直接粘贴。文件会自动传过去，进度显示在侧栏。图片直接粘贴需要两台电脑都是 0.2.0 或更新的版本，单张不超过 64 MB。富文本格式暂不同步，跨屏拖拽传输在后续计划里。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "支持 Linux 吗？Wayland 能用吗？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Linux 版目前是测试版（x86_64，.deb 和 .AppImage），到版本列表里带 Pre-release 标记的版本下载。键鼠跨屏、复制粘贴文字 / 文件 / 图片和边缘浮光都有，但只支持 X11 会话：在 Wayland 会话里流界会提示注销后改选「Xorg / X11」。Wayland 支持计划在 X11 版稳定后开始做。测试版没有应用内自动更新，要手动下载新版本；GNOME 默认不显示托盘图标，需要安装 AppIndicator 扩展；开着防火墙时要手动放行流界。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "「锁定在本机」和「暂停共享」有什么区别？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "「锁定在本机」只管键鼠不从这台切出去，边缘和快捷键切换都停用，适合打游戏或演示；别的电脑仍然可以把键鼠切过来，剪贴板和文件照常共享。「暂停共享」把双向的键鼠、剪贴板和文件共享全部停下，也可以只暂停某一台设备。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "能开机自动启动吗？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "可以。在「设置 › 通用」里打开「开机时自动启动」，登录系统后流界在托盘（菜单栏）里运行，已配对的电脑会自动连上。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "用 Windows 键盘控制 Mac，Ctrl、Win、Alt 能按 Mac 的习惯来吗？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "可以。在 Mac 上的流界里打开「设置 › 跨屏与键鼠」，找到「Windows 键盘的修饰键」：Windows 习惯（Ctrl 当 ⌘ 用，默认）、Mac 键位（空格旁边的 Alt 当 ⌘ 用）、直通，或者分别指定每个键。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "怎么更新？更新时会不会卡住键鼠？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "流界启动后会定期检查新版本，发现后在主界面提示。点「立即更新」后会先校验安装包签名，再松开远端按键、把键鼠还给本机，然后安装并自动重新打开。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "添加设备时找不到另一台电脑怎么办？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "先确认两台电脑都打开了流界，并连在同一个局域网。Windows 防火墙需要允许流界访问专用网络，当前网络也要设为「专用网络」；Mac 需要允许「本地网络」权限。公司、酒店或访客 Wi‑Fi 可能隔离设备，可以换到家用路由器或手机热点测试。"
+                }
+              }
+            ]
           }
         ]
       }

@@ -91,6 +91,9 @@ Linux 版还没有在真实桌面上充分验证，遇到问题欢迎到 [Issues
 - 页面由 `docs/index.html`（内容与结构）、`docs/styles.css`（样式，跟随系统浅色 / 深色）和 `docs/main.js`（首屏交互演示、按访问者系统推荐下载、滚动淡入等效果）组成，没有构建步骤，改完推送到 `main` 即上线。
 - 官网的视觉比应用多一层表现（网格、光晕、渐变、卡片动效），只用在官网，说明见 `docs/styles.css` 开头的注释。改样式后在浅色、深色和手机宽度下各看一遍。
 - 首页标题、描述、分享信息和 JSON-LD 结构化数据集中在 `docs/index.html`，修改产品能力时同步维护，保持与可见正文一致。
-- `docs/robots.txt` 声明抓取入口，`docs/sitemap.xml` 只列出正式域名下的可索引页面。新增页面时补入 sitemap，不加入页面锚点或安装包链接；仅在能准确维护时填写 `lastmod`。
+- JSON-LD 里的 `FAQPage` 与页面上的「常见问题」逐条对应：增删或改写问答时，同步改 JSON-LD 里对应的 `name` / `text`（纯文本，去掉链接标签）。
+- 首页内容有实质修改时，同步更新 JSON-LD 里 `WebPage` 的 `dateModified` 和 `docs/sitemap.xml` 的 `lastmod`，两处日期保持一致。
+- `docs/llms.txt` 是给 AI 搜索 / 问答引擎读的纯文本产品说明，内容只取自官网可见正文；修改产品能力、系统支持或下载地址时一并更新。
+- `docs/robots.txt` 声明抓取入口，并明确放行主要 AI 爬虫；`docs/sitemap.xml` 只列出正式域名下的可索引页面。新增页面时补入 sitemap，不加入页面锚点或安装包链接；`lastmod` 按上一条维护。
 - 发布后检查 `/robots.txt`、`/sitemap.xml` 和分享图片能正常访问。在 Google Search Console / Bing Webmaster Tools 验证域名后提交 `https://flow.bapihou.com/sitemap.xml`，通过 URL 检查确认首页可抓取及 canonical。
 - JSON-LD 可用 Schema Markup Validator 检查。软件信息只描述已提供的能力，不虚构价格、评分或评论；结构化数据不代表一定获得富媒体搜索结果。
