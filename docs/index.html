@@ -97,7 +97,7 @@
       <section class="hero" id="top">
         <div class="wrap hero-copy">
           <p class="eyebrow"><span class="tag">早期版本</span>流界 FlowAcross · Mac 与 Windows 键鼠共享软件</p>
-          <h1>一套键鼠，<br class="br-sm" />自由跨屏。</h1>
+          <h1>一套键鼠，<br class="br-sm" /><span class="grad">自由跨屏。</span></h1>
           <p class="lede">
             流界让两台或多台电脑共用一套键盘鼠标。把屏幕按桌上的摆放排好，鼠标移过相贴的边，就进入了另一台电脑。键盘跟着过去，复制的文字、文件和截图也能直接粘贴。Mac 和
             Windows 互相控制，局域网直连，端到端加密，不用注册账号。
@@ -110,11 +110,22 @@
             <a class="btn btn-ghost btn-lg" href="#demo">先在这里试试</a>
           </div>
           <p class="cta-note" data-os-note>macOS（Apple 芯片与 Intel 通用）和 Windows 10 及以上，另有 <a href="#download">Linux 测试版</a></p>
+          <ul class="hero-specs">
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>局域网直连</li>
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>端到端加密</li>
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>不用注册账号</li>
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>Mac 与 Windows 互控</li>
+          </ul>
         </div>
 
         <!-- 交互演示：和应用里的布局图同一套画法 -->
         <div class="wrap">
           <figure class="demo" id="demo">
+            <div class="demo-top" aria-hidden="true">
+              <span class="lights"><i></i><i></i><i></i></span>
+              <span class="demo-title">流界 · 设备布局</span>
+              <span class="demo-live">演示</span>
+            </div>
             <div class="stage" id="stage" role="group" aria-label="交互演示：两台电脑的屏幕并排摆放">
               <input
                 class="demo-input"
@@ -179,19 +190,26 @@
       <!-- ============ 功能 ============ -->
       <section class="section" id="features" aria-labelledby="features-title">
         <div class="wrap">
-          <header class="section-head">
+          <header class="section-head center">
             <p class="kicker">功能</p>
             <h2 id="features-title">多台电脑共享键鼠，像同一台电脑那样用</h2>
             <p>不用切输入、不用找另一套键盘。光标往哪去，键盘就跟到哪。</p>
           </header>
 
           <ul class="features">
-            <li>
+            <li class="f-wide">
               <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="2.5" y="5" width="8.5" height="12" rx="1.5" /><rect x="13" y="5" width="8.5" height="12" rx="1.5" /><path d="M12 8v6" class="acc" />
               </svg>
               <h3>移过相贴的边就跨屏</h3>
               <p>按真实摆放拖动屏幕，自动吸附到相邻边缘。多显示器照样排；只有真正贴着的边才能跨过去。拿起哪台电脑自己的鼠标，就从哪台接着用。</p>
+              <div class="f-art art-layout" aria-hidden="true">
+                <span class="a-scr hue-0"></span>
+                <span class="a-scr hue-1"></span>
+                <i class="a-seam"></i>
+                <i class="a-trail"></i>
+                <svg class="a-cur" viewBox="0 0 24 24"><path d="M5 3l14 7.5-6.2 1.6L10 18.5z" /></svg>
+              </div>
             </li>
             <li>
               <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
@@ -210,12 +228,17 @@
                 直接切到左右相邻的电脑。打游戏或演示时打开「锁定在本机」，键鼠就不会从这台切出去。
               </p>
             </li>
-            <li>
+            <li class="f-wide">
               <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="6" y="4" width="12" height="17" rx="2" /><path d="M9 4.5V3h6v1.5M9.5 11h5M9.5 15h5" />
               </svg>
               <h3>复制文字、文件和图片</h3>
               <p>在这台复制文字、文件，或者截一张图，把键鼠切过去直接粘贴，文件会自动传过去。超过 1 GB 的点一下再接收；文件和图片的共享可以单独关掉。</p>
+              <div class="f-art art-clip" aria-hidden="true">
+                <span><b>TXT</b>一段文字<em>直接粘贴</em></span>
+                <span><b>FILE</b>设计稿.zip<em>自动传输</em></span>
+                <span><b>PNG</b>屏幕截图<em>直接粘贴</em></span>
+              </div>
             </li>
             <li>
               <svg class="i fi" viewBox="0 0 24 24" aria-hidden="true">
@@ -241,19 +264,19 @@
       <!-- ============ 上手 ============ -->
       <section class="section section-alt" id="start" aria-labelledby="start-title">
         <div class="wrap">
-          <header class="section-head">
+          <header class="section-head center">
             <p class="kicker">上手</p>
             <h2 id="start-title">三步开始 Mac 与 Windows 键鼠共享</h2>
           </header>
 
           <ol class="steps">
             <li>
-              <span class="step-no">1</span>
+              <span class="step-no">01</span>
               <h3>两台电脑都装上流界</h3>
               <p>Mac 第一次打开时，按提示在系统设置里打开「辅助功能」和「输入监控」，流界才能读取和发送键鼠。可以设为开机自动启动。</p>
             </li>
             <li>
-              <span class="step-no">2</span>
+              <span class="step-no">02</span>
               <h3>核对配对码</h3>
               <p>同一局域网里的电脑会自动出现。两边显示同一个 6 位码（每次配对都不一样），逐位核对后确认。</p>
               <div class="code" aria-label="配对码示例 428916">
@@ -261,7 +284,7 @@
               </div>
             </li>
             <li>
-              <span class="step-no">3</span>
+              <span class="step-no">03</span>
               <h3>照桌面摆好屏幕</h3>
               <p>在布局图里把屏幕拖到和桌上一样的位置。亮起蓝色接缝的地方，鼠标就能跨过去。</p>
             </li>
@@ -271,14 +294,14 @@
 
       <!-- ============ 安全 ============ -->
       <section class="section" id="security" aria-labelledby="security-title">
-        <div class="wrap split">
-          <header class="section-head">
+        <div class="wrap">
+          <header class="section-head center">
             <p class="kicker">安全与隐私</p>
             <h2 id="security-title">键盘输入只在你的局域网里走</h2>
             <p>你敲的每一个键都可能是密码。所以流界没有服务器、没有账号，也不需要联网登录。</p>
           </header>
 
-          <div>
+          <div class="sec-body">
             <div class="p2p" aria-hidden="true">
               <span class="node">MacBook Pro</span>
               <span class="wire"><span class="lock"
@@ -323,6 +346,14 @@
             <p>跨屏好不好用，差别在几十毫秒里。这些是我们在 Mac 和 Windows 真机上一项项调出来的。</p>
           </header>
 
+          <div>
+          <ul class="tiles" aria-label="兜底释放">
+            <li><b>500<i>ms</i></b><span>控制期间每隔这么久一次心跳</span></li>
+            <li><b>1.5<i>s</i></b><span>收不到回应，就把键鼠还给本机</span></li>
+            <li><b>3<i>s</i></b><span>被控制的一方没消息，就松开全部按键</span></li>
+          </ul>
+          <div class="panel">
+          <p class="panel-bar" aria-hidden="true"><span class="lights"><i></i><i></i><i></i></span>传输与手感细节</p>
           <table class="spec">
             <caption class="sr">传输与手感细节</caption>
             <tbody>
@@ -350,22 +381,17 @@
                 <th scope="row">低延迟模式</th>
                 <td>仅 macOS：有设备连着时临时关闭 AWDL，消除 Wi‑Fi 每秒一次的卡顿</td>
               </tr>
-              <tr>
-                <th scope="row">兜底释放</th>
-                <td>
-                  控制期间每 <span class="num">500 ms</span> 一次心跳：<span class="num">1.5 s</span> 收不到回应就把键鼠还给本机，被控制的一方
-                  <span class="num">3 s</span> 没消息就松开全部按键
-                </td>
-              </tr>
             </tbody>
           </table>
+          </div>
+          </div>
         </div>
       </section>
 
       <!-- ============ 下载 ============ -->
       <section class="section" id="download" aria-labelledby="download-title">
         <div class="wrap">
-          <header class="section-head">
+          <header class="section-head center">
             <p class="kicker">下载</p>
             <h2 id="download-title">下载流界：macOS、Windows 安装包与 Linux 测试版</h2>
             <p>几台电脑尽量装同一个版本。支持 Windows 10 / 11（64 位），macOS 安装包兼容 Apple 芯片与 Intel，装好后会自动检查更新，提示后一键升级。Linux（x86_64，X11 会话）目前提供测试版。</p>

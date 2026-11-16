@@ -3,7 +3,9 @@
  * 1. 首屏交互演示——和应用一样的规则：只有相贴的边（蓝色接缝）能跨过去，其余边把光标挡住；
  *    可选「贴边停留 0.3 秒才跨屏」；Ctrl+Alt+←/→ 直接切换；键盘输入跟着光标走。
  * 2. 按访问者的系统突出对应的下载。
- * 3. 顶栏滚动后出现分隔线。
+ * 3. 顶栏滚动后出现分隔线和毛玻璃底。
+ * 4. 卡片悬停时，一团光跟着指针走。
+ * 5. 各分节滚动到视野里时淡入。
  */
 (function () {
   "use strict";
@@ -17,6 +19,46 @@
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  /* ============ 卡片聚光：把指针位置写进 --mx / --my ============ */
+  Array.prototype.forEach.call(document.querySelectorAll(".features li, .dl-card"), function (el) {
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", e.clientX - r.left + "px");
+      el.style.setProperty("--my", e.clientY - r.top + "px");
+    });
+  });
+
+  /* ============ 滚动淡入：同一组里的元素依次出现 ============ */
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    var revealIo = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          var el = en.target;
+          revealIo.unobserve(el);
+          el.classList.add("in");
+          // 淡入结束后摘掉类名，把 transition 还给卡片自己的悬停效果
+          setTimeout(function () {
+            el.classList.remove("reveal", "in");
+            el.style.removeProperty("--d");
+          }, 1100);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+    );
+    [".section-head", ".features li", ".steps li", ".p2p", ".facts div", ".tiles li", ".panel", ".dl-card", ".notice", ".faq", ".final-row"].forEach(
+      function (sel) {
+        Array.prototype.forEach.call(document.querySelectorAll(sel), function (el, i) {
+          // 已经在首屏里的不处理，免得闪一下
+          if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
+          el.style.setProperty("--d", Math.min(i, 5) * 70 + "ms");
+          el.classList.add("reveal");
+          revealIo.observe(el);
+        });
+      }
+    );
+  }
 
   /* ============ 按系统推荐下载 ============ */
   (function () {
