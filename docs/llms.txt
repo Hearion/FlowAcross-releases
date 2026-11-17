@@ -7,10 +7,10 @@
 - 名称：流界，英文名 FlowAcross
 - 价格：免费
 - 类型：键鼠共享 / 跨屏控制软件（软件 KVM，不需要硬件切换器；不传输屏幕画面，每台电脑用自己的显示器）
-- 支持系统：Windows 10 / 11（64 位）；macOS（Apple 芯片与 Intel 通用安装包）；Linux 测试版（x86_64，X11 与 Wayland 会话，.deb、Arch 的 .pkg.tar.zst 与 .AppImage）
+- 支持系统：Windows 10 / 11（64 位）；macOS（Apple 芯片与 Intel 通用安装包）；Linux（x86_64，X11 与 Wayland 会话，.deb、Arch 的 .pkg.tar.zst 与 .AppImage，从 v0.2.2 起随正式版发布，仍在完善中）
 - 官网：https://flow.bapihou.com/
 - 下载（最新正式版）：https://github.com/Hearion/FlowAcross-releases/releases/latest
-- 版本列表（含 Linux 测试版，带 Pre-release 标记）：https://github.com/Hearion/FlowAcross-releases/releases
+- 版本列表（带 Pre-release 标记的是测试版）：https://github.com/Hearion/FlowAcross-releases/releases
 - 问题反馈：https://github.com/Hearion/FlowAcross-releases/issues
 
 ## 主要功能
@@ -23,7 +23,7 @@
 - 边缘浮光：键鼠进入某台电脑时，进来的那条屏幕边亮一道光。
 - 低延迟模式（仅 macOS）：有设备连着时临时关闭 AWDL，消除 Mac 用 Wi‑Fi 时鼠标每秒一顿的问题。
 - 断线保护：断网后 1.5 秒内把键鼠还给本机，并松开远端所有按键。
-- 开机自动启动，托盘（菜单栏）常驻；应用内自动检查更新并一键升级（Linux 测试版除外）。
+- 开机自动启动，托盘（菜单栏）常驻；应用内自动检查更新并一键升级（Linux 版除外，需手动下载）。
 
 ## 安全与隐私
 

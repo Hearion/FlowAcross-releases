@@ -4,7 +4,7 @@
 
 [流界官网：Mac 与 Windows 键鼠共享软件下载](https://flow.bapihou.com/)
 
-把几台电脑放在桌上，鼠标从一台的屏幕边缘移出，就出现在相邻电脑的屏幕上，键盘随之切换，复制的文字、文件和截图也能直接在另一台粘贴。支持 Windows 与 macOS 互相控制，局域网直连、端到端加密，不需要注册账号。Linux 提供测试版（X11，以及 Wayland 的 Hyprland、Sway、GNOME、KDE）。
+把几台电脑放在桌上，鼠标从一台的屏幕边缘移出，就出现在相邻电脑的屏幕上，键盘随之切换，复制的文字、文件和截图也能直接在另一台粘贴。支持 Windows 与 macOS 互相控制，局域网直连、端到端加密，不需要注册账号。也支持 Linux（X11，以及 Wayland 的 Hyprland、Sway、GNOME、KDE），Linux 版仍在完善中。
 
 ## 下载
 
@@ -14,10 +14,13 @@
 |---|---|---|
 | Windows 10 / 11（64 位） | `FlowAcross_x.y.z_x64-setup.exe` | 安装程序 |
 | macOS（Intel 和 Apple 芯片通用） | `FlowAcross_x.y.z_universal.dmg` | 打开后把 FlowAcross 拖进「应用程序」 |
+| Debian / Ubuntu（x86_64） | `FlowAcross_x.y.z_amd64.deb` | `sudo apt install ./文件名.deb` |
+| Arch、CachyOS、Manjaro 等（x86_64） | `FlowAcross_x.y.z_x86_64.pkg.tar.zst` | `sudo pacman -U 文件名.pkg.tar.zst` |
+| 其他 Linux 发行版（x86_64） | `FlowAcross_x.y.z_amd64.AppImage` | `chmod +x` 后直接运行 |
 
 其他文件（`.sig`、`.app.tar.gz`、`latest.json`）供应用内自动更新使用，不用下载。
 
-**Linux 测试版**不在「最新版本」里：到 [版本列表](https://github.com/Hearion/FlowAcross-releases/releases) 找带 Pre-release 标记的版本（版本号带后缀，如 `v0.2.2-beta.3`），下载 x86_64 的安装包：Debian / Ubuntu 用 `.deb`，Arch 系（Arch、CachyOS、Manjaro 等）用 `.pkg.tar.zst`（v0.2.2-beta.3 起提供），其他发行版用 `.AppImage`。
+Linux 版从 v0.2.2 起和 Windows、macOS 一起发布。[版本列表](https://github.com/Hearion/FlowAcross-releases/releases)里带 Pre-release 标记的是测试版（版本号带后缀，如 `v0.2.3-beta.1`），想提前试新功能可以装。
 
 ## 安装
 
@@ -33,7 +36,7 @@
 2. 第一次打开时会提示「无法验证开发者」：到「系统设置 → 隐私与安全性」，在页面下方点「仍要打开」。
 3. 按引导授予「辅助功能」和「输入监控」权限（用于捕获和模拟键盘鼠标），以及「本地网络」权限（用于发现其他电脑）。授予「输入监控」后可能需要退出并重新打开流界。
 
-### Linux（测试版）
+### Linux
 
 1. 安装：
    - Debian / Ubuntu：`sudo apt install ./下载的文件.deb`
@@ -49,9 +52,9 @@
    - GNOME / KDE 上「停留一会儿才切换」不起作用，GNOME 上没有边缘浮光。
 4. Hyprland / Sway 上，通往其他电脑的那条屏幕边最外 1 个像素的点击会被流界挡住。
 5. GNOME 默认不显示托盘图标，需要安装 AppIndicator 扩展；开着防火墙时要手动放行流界。
-6. 测试版没有应用内自动更新，新版本要回到版本列表手动下载。
+6. Linux 版暂时没有应用内自动更新，新版本要回到[最新版本](https://github.com/Hearion/FlowAcross-releases/releases/latest)页面手动下载。
 
-Linux 版还在测试：Hyprland 有用户实测可用，其他桌面还没有在真机上充分验证。遇到问题欢迎到 [Issues](https://github.com/Hearion/FlowAcross-releases/issues) 反馈，请附上发行版、桌面环境（合成器）及其版本。
+Linux 版仍在完善中：Hyprland 有用户实测可用，其他桌面还没有在真机上充分验证。遇到问题欢迎到 [Issues](https://github.com/Hearion/FlowAcross-releases/issues) 反馈，请附上发行版、桌面环境（合成器）及其版本。
 
 ## 开始使用
 
@@ -81,7 +84,7 @@ Linux 版还在测试：Hyprland 有用户实测可用，其他桌面还没有�
 - macOS 输入密码时（安全输入模式）系统会屏蔽键盘捕获。
 - 公司网络、酒店和公共 Wi‑Fi 常会屏蔽设备发现，可以先用家里的网络或手机热点测试。
 - Mac 使用 Wi‑Fi 时，跨屏可能每秒卡一下。这是 macOS 的 AWDL（隔空投送、接力、通用控制用的点对点 Wi‑Fi）定期切换信道造成的网络停顿。在 Mac 的流界里打开「设置 → 跨屏与键鼠 → 低延迟模式」即可解决：有电脑连着时自动关闭 AWDL，断开后恢复（开启期间隔空投送、接力、通用控制暂不可用，第一次开启需要输入一次 Mac 密码）。Mac 接有线网络时不需要开启。
-- Linux 版是测试版：没有应用内自动更新，正式版暂不带 Linux 安装包；Wayland 上的限制见上面的「安装 › Linux」。
+- Linux 版仍在完善中：没有应用内自动更新；Wayland 上的限制见上面的「安装 › Linux」。
 - 剪贴板同步文字、文件和图片（截图），富文本格式暂不同步。图片直接粘贴需要两台电脑都是 0.2.0 或更新的版本，单张不超过 64 MB；旧版设备收到的是一个 PNG 文件。
 
 ## 遇到问题
