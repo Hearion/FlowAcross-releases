@@ -2,9 +2,9 @@
 
 **一套键鼠，自由跨屏。**
 
-[流界官网：Mac 与 Windows 键鼠共享软件下载](https://flow.bapihou.com/)
+[流界官网：Mac、Windows、Linux 键鼠共享软件下载](https://flow.bapihou.com/)
 
-把几台电脑放在桌上，鼠标从一台的屏幕边缘移出，就出现在相邻电脑的屏幕上，键盘随之切换，复制的文字、文件和截图也能直接在另一台粘贴。支持 Windows 与 macOS 互相控制，局域网直连、端到端加密，不需要注册账号。也支持 Linux（X11，以及 Wayland 的 Hyprland、Sway、GNOME、KDE），Linux 版仍在完善中。
+把几台电脑放在桌上，鼠标从一台的屏幕边缘移出，就出现在相邻电脑的屏幕上，键盘随之切换，复制的文字、文件和截图也能直接在另一台粘贴。支持 Windows、macOS 和 Linux（X11，以及 Wayland 的 Hyprland、Sway、GNOME、KDE）互相控制，局域网直连、端到端加密，不需要注册账号。
 
 ## 下载
 

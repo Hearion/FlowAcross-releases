@@ -1,13 +1,13 @@
 ﻿# 流界 FlowAcross
 
-> 流界 FlowAcross 是一款免费的键鼠共享软件：让两台或多台电脑（Mac 与 Windows 可互相控制）通过局域网共用一套键盘鼠标。鼠标移过相邻屏幕的边缘就切到另一台电脑，键盘随之切换，复制的文字、文件和截图可以在另一台直接粘贴。局域网直连、端到端加密，不需要注册账号，也没有服务器。目前是早期版本。
+> 流界 FlowAcross 是一款免费的键鼠共享软件：让两台或多台电脑（Mac、Windows、Linux 可互相控制）通过局域网共用一套键盘鼠标。鼠标移过相邻屏幕的边缘就切到另一台电脑，键盘随之切换，复制的文字、文件和截图可以在另一台直接粘贴。局域网直连、端到端加密，不需要注册账号，也没有服务器。目前是早期版本。
 
 ## 基本信息
 
 - 名称：流界，英文名 FlowAcross
 - 价格：免费
 - 类型：键鼠共享 / 跨屏控制软件（软件 KVM，不需要硬件切换器；不传输屏幕画面，每台电脑用自己的显示器）
-- 支持系统：Windows 10 / 11（64 位）；macOS（Apple 芯片与 Intel 通用安装包）；Linux（x86_64，X11 与 Wayland 会话，.deb、Arch 的 .pkg.tar.zst 与 .AppImage，从 v0.2.2 起随正式版发布，仍在完善中）
+- 支持系统：Windows 10 / 11（64 位）；macOS（Apple 芯片与 Intel 通用安装包）；Linux（x86_64，X11 与 Wayland 会话，.deb、Arch 的 .pkg.tar.zst 与 .AppImage，从 v0.2.2 起随正式版发布）
 - 官网：https://flow.bapihou.com/
 - 下载（最新正式版）：https://github.com/Hearion/FlowAcross-releases/releases/latest
 - 版本列表（带 Pre-release 标记的是测试版）：https://github.com/Hearion/FlowAcross-releases/releases

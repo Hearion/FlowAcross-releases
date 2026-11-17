@@ -1547,17 +1547,6 @@ h3 {
   font-weight: 600;
 }
 
-.beta-label {
-  margin-left: 8px;
-  padding: 1px 8px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  color: var(--fg-2);
-  font-size: 12px;
-  font-weight: 600;
-  vertical-align: 2px;
-}
-
 .notice {
   display: flex;
   gap: 12px;

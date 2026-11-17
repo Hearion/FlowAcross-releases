@@ -71,12 +71,16 @@
     var label = document.querySelector("[data-os-label]");
     var note = document.querySelector("[data-os-note]");
 
-    if (os === "mac" || os === "win") {
-      label.textContent = os === "mac" ? "下载 macOS 版" : "下载 Windows 版";
+    if (os === "mac" || os === "win" || os === "linux") {
+      label.textContent = os === "mac" ? "下载 macOS 版" : os === "win" ? "下载 Windows 版" : "下载 Linux 版";
       note.innerHTML =
         os === "mac"
-          ? 'Apple 芯片与 Intel 通用。另一台是 Windows？<a href="#download">也在这里下载</a>'
-          : 'Windows 10 及以上。另一台是 Mac？<a href="#download">也在这里下载</a>';
+          ? 'Apple 芯片与 Intel 通用。另一台是 Windows 或 Linux？<a href="#download">也在这里下载</a>'
+          : os === "win"
+            ? 'Windows 10 及以上。另一台是 Mac 或 Linux？<a href="#download">也在这里下载</a>'
+            : 'x86_64，支持 X11 和 Wayland。另一台是 Mac 或 Windows？<a href="#download">也在这里下载</a>';
+      // Linux 有三种安装包，按钮先带到下载区看说明
+      if (os === "linux") cta.setAttribute("href", "#download");
       var card = document.querySelector('.dl-card[data-os="' + os + '"]');
       if (card) {
         card.classList.add("recommended");
@@ -85,16 +89,10 @@
         rec.textContent = "这台电脑";
         card.querySelector(".dl-title").appendChild(rec);
       }
-    } else if (os === "linux") {
-      label.textContent = "下载 Linux 测试版";
-      cta.setAttribute("href", "#download");
-      note.innerHTML = 'Linux 版是测试版，x86_64，支持 X11 和 Wayland。Mac 和 Windows 版<a href="#download">也在这里下载</a>';
-      var linuxCard = document.querySelector('.dl-card[data-os="linux"]');
-      if (linuxCard) linuxCard.classList.add("recommended");
     } else if (os === "mobile") {
       label.textContent = "查看下载";
       cta.setAttribute("href", "#download");
-      note.textContent = "流界运行在 Mac 和 Windows 上（Linux 为测试版），可以在电脑上打开本页下载。";
+      note.textContent = "流界运行在 Mac、Windows 和 Linux 电脑上，可以在电脑上打开本页下载。";
     }
   })();
 
