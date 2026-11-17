@@ -88,7 +88,7 @@
     } else if (os === "linux") {
       label.textContent = "下载 Linux 测试版";
       cta.setAttribute("href", "#download");
-      note.innerHTML = 'Linux 版是测试版，x86_64，仅支持 X11 会话。Mac 和 Windows 版<a href="#download">也在这里下载</a>';
+      note.innerHTML = 'Linux 版是测试版，x86_64，支持 X11 和 Wayland。Mac 和 Windows 版<a href="#download">也在这里下载</a>';
       var linuxCard = document.querySelector('.dl-card[data-os="linux"]');
       if (linuxCard) linuxCard.classList.add("recommended");
     } else if (os === "mobile") {

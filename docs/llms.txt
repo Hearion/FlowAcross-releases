@@ -7,7 +7,7 @@
 - 名称：流界，英文名 FlowAcross
 - 价格：免费
 - 类型：键鼠共享 / 跨屏控制软件（软件 KVM，不需要硬件切换器；不传输屏幕画面，每台电脑用自己的显示器）
-- 支持系统：Windows 10 / 11（64 位）；macOS（Apple 芯片与 Intel 通用安装包）；Linux 测试版（x86_64，仅 X11 会话，.deb 与 .AppImage）
+- 支持系统：Windows 10 / 11（64 位）；macOS（Apple 芯片与 Intel 通用安装包）；Linux 测试版（x86_64，X11 与 Wayland 会话，.deb、Arch 的 .pkg.tar.zst 与 .AppImage）
 - 官网：https://flow.bapihou.com/
 - 下载（最新正式版）：https://github.com/Hearion/FlowAcross-releases/releases/latest
 - 版本列表（含 Linux 测试版，带 Pre-release 标记）：https://github.com/Hearion/FlowAcross-releases/releases
@@ -37,7 +37,7 @@
 - 所有电脑需要在同一个局域网（同一路由器或 Wi‑Fi）内；公司、酒店、访客 Wi‑Fi 可能隔离设备。
 - macOS 需要授予「辅助功能」「输入监控」和「本地网络」权限；Windows 防火墙需允许访问专用网络。
 - 安装包尚未完成苹果公证和 Windows 代码签名，首次打开会被系统拦截，需手动放行。
-- Linux 版只支持 X11 会话，Wayland 支持在计划中。
+- Linux 版支持 X11 和 Wayland（Hyprland、Sway，以及通过 portal 的 GNOME 45+ / KDE Plasma 6.1+）；Wayland 上「按住修饰键才切换」和在本机按快捷键切换暂不可用，GNOME / KDE 部分尚未在真机上充分验证。
 
 ## 上手步骤
 
