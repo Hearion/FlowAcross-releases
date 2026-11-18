@@ -110,6 +110,7 @@ Linux 版仍在完善中：Hyprland 有用户实测可用，其他桌面还没�
 - **自动部署**：`docs/` 有改动推送到 `main` 后，GitHub Actions 的「部署官网」（`.github/workflows/deploy-site.yml`）通过 SSH 用 rsync 把 `docs/` 同步到服务器的网站目录，再检查首页能打开，一般一分钟内完成。也可以在 Actions 页面手动运行。
   - 同步会删除网站目录里 `docs/` 没有的文件；`.user.ini`、`.well-known/`、`.htaccess`、`404.html` 受保护不删。要在服务器上额外放文件，先在工作流的 `--filter` 里加保护。
   - `docs/CNAME`、`docs/.nojekyll` 是以前用 GitHub Pages 时留下的，不会传到服务器。
+  - 服务器给 CSS、JS 设了 12 小时的浏览器缓存。部署时工作流会自动在 `index.html` 里把 `styles.css`、`main.js` 改成 `styles.css?v=<内容哈希>`，样式改了浏览器就会重新下载；源文件里保持不带版本号的写法，不用手动改。新加 CSS / JS 文件时，把它加进工作流「给 CSS、JS 加版本号」那一步的文件列表。
   - 需要的仓库密钥（Settings → Secrets and variables → Actions）：`DEPLOY_HOST`（服务器公网 IP）、`DEPLOY_PORT`（SSH 端口，默认 22 可不填）、`DEPLOY_USER`（部署用户，不用 root）、`DEPLOY_PATH`（网站目录，必须在 `/www/wwwroot/` 下）、`DEPLOY_KEY`（部署私钥全文）、`DEPLOY_KNOWN_HOSTS`（服务器主机公钥，`ssh-keyscan` 的输出）。
   - 部署失败时看 Actions 里的日志：「检查配置」报缺哪个密钥；「同步网站文件」失败多半是 SSH 连不上（安全组、端口、宝塔的 SSH 设置）或部署用户没有网站目录的写权限。
 - 官网的视觉比应用多一层表现（网格、光晕、渐变、卡片动效），只用在官网，说明见 `docs/styles.css` 开头的注释。改样式后在浅色、深色和手机宽度下各看一遍。

@@ -49,6 +49,17 @@ jobs:
             *) echo "::error::DEPLOY_PATH 必须是 /www/wwwroot/ 下的网站目录，现在是「$DIR」。同步会删除目录里多余的文件，写错目录很危险。"; exit 1 ;;
           esac
 
+      # 服务器给 CSS、JS 设了 12 小时的浏览器缓存：页面更新了、样式还是旧的，新加的元素会没有样式。
+      # 部署前在引用后面加上文件内容的哈希（styles.css?v=xxxx），内容变了地址就变，浏览器会重新下载。
+      - name: 给 CSS、JS 加版本号
+        run: |
+          for f in styles.css main.js; do
+            v=$(sha256sum "docs/$f" | cut -c1-10)
+            sed -i -E "s#(href|src)=\"$f(\?v=[^\"]*)?\"#\1=\"$f?v=$v\"#g" docs/index.html
+            grep -q "$f?v=$v" docs/index.html || { echo "::error::index.html 里没找到对 $f 的引用，版本号没加上。"; exit 1; }
+            echo "$f -> ?v=$v"
+          done
+
       - name: 准备 SSH
         env:
           KEY: ${{ secrets.DEPLOY_KEY }}
