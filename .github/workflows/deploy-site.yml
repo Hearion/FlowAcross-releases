@@ -1,0 +1,99 @@
+# 官网自动部署：docs/ 有改动推送到 main 时，通过 SSH 用 rsync 同步到阿里云服务器（宝塔面板托管）的网站目录。
+# 也可以在 Actions 页面手动运行（「Run workflow」）。一次性配置见 README 的「官网维护」。
+name: 部署官网
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - ".github/workflows/deploy-site.yml"
+  workflow_dispatch:
+
+# 连续推送时只保留最新的一次，正在进行的部署不打断（避免网站目录同步到一半）。
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: 同步到服务器
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: 检查配置
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          DIR: ${{ secrets.DEPLOY_PATH }}
+          KEY: ${{ secrets.DEPLOY_KEY }}
+          KNOWN: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          missing=""
+          [ -n "$HOST" ]  || missing="$missing DEPLOY_HOST"
+          [ -n "$USER" ]  || missing="$missing DEPLOY_USER"
+          [ -n "$DIR" ]   || missing="$missing DEPLOY_PATH"
+          [ -n "$KEY" ]   || missing="$missing DEPLOY_KEY"
+          [ -n "$KNOWN" ] || missing="$missing DEPLOY_KNOWN_HOSTS"
+          if [ -n "$missing" ]; then
+            echo "::error::缺少仓库密钥：$missing。在 Settings → Secrets and variables → Actions 里添加，见 README 的「官网维护」。"
+            exit 1
+          fi
+          case "$DIR" in
+            /www/wwwroot/?*) ;;
+            *) echo "::error::DEPLOY_PATH 必须是 /www/wwwroot/ 下的网站目录，现在是「$DIR」。同步会删除目录里多余的文件，写错目录很危险。"; exit 1 ;;
+          esac
+
+      - name: 准备 SSH
+        env:
+          KEY: ${{ secrets.DEPLOY_KEY }}
+          KNOWN: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # 固定服务器的主机公钥：连到的不是这台服务器就直接失败，不会把网站传给别人。
+          printf '%s\n' "$KNOWN" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: 同步网站文件
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          PORT: ${{ secrets.DEPLOY_PORT }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          DIR: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          ssh_cmd="ssh -i $HOME/.ssh/deploy_key -p ${PORT:-22} -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=20"
+          # --delete-after：先传完新文件再删旧文件，同步过程中网站不缺页。
+          # P 规则保护服务器上不属于官网源文件的东西不被删除：
+          #   .user.ini（宝塔的防跨站设置，带不可删除属性）、.well-known（申请 SSL 证书用）、
+          #   .htaccess、宝塔自动生成的 404.html。
+          # CNAME、.nojekyll 只给 GitHub Pages 用，不传。
+          rsync -rltvz --delete-after \
+            --chmod=D755,F644 \
+            --filter='P /.user.ini' \
+            --filter='P /.well-known/' \
+            --filter='P /.htaccess' \
+            --filter='P /404.html' \
+            --exclude='/CNAME' \
+            --exclude='/.nojekyll' \
+            -e "$ssh_cmd" \
+            docs/ "$USER@$HOST:${DIR%/}/"
+
+      - name: 检查线上首页
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://flow.bapihou.com/)
+          echo "首页返回 HTTP $code"
+          if [ "$code" != "200" ]; then
+            echo "::error::同步完成，但 https://flow.bapihou.com/ 返回 $code。到宝塔里看站点是否正常。"
+            exit 1
+          fi
+
+      - name: 清理密钥
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
