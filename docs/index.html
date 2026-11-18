@@ -50,7 +50,7 @@
             "name": "流界 FlowAcross 官网｜Mac、Windows、Linux 键鼠共享软件下载",
             "description": "让两台或多台电脑共用一套键盘鼠标，支持 Mac、Windows 和 Linux 之间跨屏控制，以及文字、文件和图片的跨设备复制粘贴。",
             "inLanguage": "zh-CN",
-            "dateModified": "2026-11-18",
+            "dateModified": "2026-11-19",
             "isPartOf": { "@id": "https://flow.bapihou.com/#website" },
             "mainEntity": { "@id": "https://flow.bapihou.com/#software" },
             "hasPart": { "@id": "https://flow.bapihou.com/#faq" }
@@ -65,7 +65,7 @@
             "applicationCategory": "UtilitiesApplication",
             "operatingSystem": ["Windows 10 或更高版本（64 位）", "macOS（Apple 芯片与 Intel）", "Linux（x86_64，X11 与 Wayland）"],
             "image": "https://flow.bapihou.com/assets/logo.png",
-            "downloadUrl": "https://github.com/Hearion/FlowAcross-releases/releases/latest",
+            "downloadUrl": "https://flow.bapihou.com/#download",
             "releaseNotes": "https://github.com/Hearion/FlowAcross-releases/releases",
             "sameAs": "https://github.com/Hearion/FlowAcross-releases",
             "isAccessibleForFree": true,
@@ -231,7 +231,7 @@
             和 Linux 互相控制，局域网直连，端到端加密，不用注册账号。
           </p>
           <div class="cta-row">
-            <a class="btn btn-primary btn-lg" href="https://github.com/Hearion/FlowAcross-releases/releases/latest" data-os-cta>
+            <a class="btn btn-primary btn-lg" href="#download" data-os-cta>
               <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14" /></svg>
               <span data-os-label>下载流界</span>
             </a>
@@ -530,7 +530,7 @@
           </header>
 
           <div class="dl">
-            <a class="dl-card" href="https://github.com/Hearion/FlowAcross-releases/releases/latest" data-os="mac">
+            <a class="dl-card" href="https://dl.bapihou.com/FlowAcross/latest/FlowAcross_universal.dmg" data-os="mac">
               <svg class="i dl-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="4" y="4.5" width="16" height="11" rx="1.5" /><path d="M2 19h20" />
               </svg>
@@ -540,7 +540,7 @@
               </span>
               <span class="dl-go">下载<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v12m0 0l-5-5m5 5l5-5" /></svg></span>
             </a>
-            <a class="dl-card" href="https://github.com/Hearion/FlowAcross-releases/releases/latest" data-os="win">
+            <a class="dl-card" href="https://dl.bapihou.com/FlowAcross/latest/FlowAcross_x64-setup.exe" data-os="win">
               <svg class="i dl-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="2.5" y="4" width="19" height="12.5" rx="1.5" /><path d="M9 20h6M12 16.5V20" />
               </svg>
@@ -550,17 +550,24 @@
               </span>
               <span class="dl-go">下载<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v12m0 0l-5-5m5 5l5-5" /></svg></span>
             </a>
-            <a class="dl-card dl-wide" href="https://github.com/Hearion/FlowAcross-releases/releases/latest" data-os="linux">
+            <div class="dl-card dl-wide" data-os="linux">
               <svg class="i dl-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="2.5" y="4.5" width="19" height="15" rx="1.5" /><path d="M6.5 9.5l3 2.5-3 2.5M12 15h5" />
               </svg>
               <span class="dl-body">
                 <span class="dl-title">Linux</span>
-                <span class="dl-meta">.deb、Arch 的 .pkg.tar.zst 或 .AppImage，x86_64，支持 X11 和 Wayland</span>
+                <span class="dl-meta">x86_64，支持 X11 和 Wayland。按发行版选一个安装包</span>
               </span>
-              <span class="dl-go">下载<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v12m0 0l-5-5m5 5l5-5" /></svg></span>
-            </a>
+              <span class="dl-go-row">
+                <a class="dl-go" href="https://dl.bapihou.com/FlowAcross/latest/FlowAcross_amd64.deb" title="Debian、Ubuntu 等">.deb<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v12m0 0l-5-5m5 5l5-5" /></svg></a>
+                <a class="dl-go" href="https://dl.bapihou.com/FlowAcross/latest/FlowAcross_x86_64.pkg.tar.zst" title="Arch、CachyOS、Manjaro 等">Arch<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v12m0 0l-5-5m5 5l5-5" /></svg></a>
+                <a class="dl-go" href="https://dl.bapihou.com/FlowAcross/latest/FlowAcross_amd64.AppImage" title="其他发行版，chmod +x 后直接运行">AppImage<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v12m0 0l-5-5m5 5l5-5" /></svg></a>
+              </span>
+            </div>
           </div>
+          <p class="dl-alt">
+            下载从国内服务器提供。也可以到 <a href="https://github.com/Hearion/FlowAcross-releases/releases/latest">GitHub 发布页</a>下载同样的安装包，或查看<a href="https://github.com/Hearion/FlowAcross-releases/releases">历史版本</a>。
+          </p>
 
           <p class="notice">
             <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>

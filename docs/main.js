@@ -79,9 +79,9 @@
           : os === "win"
             ? 'Windows 10 及以上。另一台是 Mac 或 Linux？<a href="#download">也在这里下载</a>'
             : 'x86_64，支持 X11 和 Wayland。另一台是 Mac 或 Windows？<a href="#download">也在这里下载</a>';
-      // Linux 有三种安装包，按钮先带到下载区看说明
-      if (os === "linux") cta.setAttribute("href", "#download");
       var card = document.querySelector('.dl-card[data-os="' + os + '"]');
+      // Mac、Windows 直接下载对应的安装包；Linux 有三种安装包，按钮留在下载区让人选
+      if (card && card.getAttribute("href")) cta.setAttribute("href", card.getAttribute("href"));
       if (card) {
         card.classList.add("recommended");
         var rec = document.createElement("span");

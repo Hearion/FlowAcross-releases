@@ -8,17 +8,17 @@
 
 ## 下载
 
-到 [**最新版本**](https://github.com/Hearion/FlowAcross-releases/releases/latest) 页面，在 Assets 里下载对应的安装包：
+点下表的链接直接下载最新正式版（国内服务器，速度快）；也可以到 GitHub 的[**最新版本**](https://github.com/Hearion/FlowAcross-releases/releases/latest)页面，在 Assets 里下载同样的文件。
 
-| 系统 | 下载文件 | 说明 |
+| 系统 | 国内下载 | 说明 |
 |---|---|---|
-| Windows 10 / 11（64 位） | `FlowAcross_x.y.z_x64-setup.exe` | 安装程序 |
-| macOS（Intel 和 Apple 芯片通用） | `FlowAcross_x.y.z_universal.dmg` | 打开后把 FlowAcross 拖进「应用程序」 |
-| Debian / Ubuntu（x86_64） | `FlowAcross_x.y.z_amd64.deb` | `sudo apt install ./文件名.deb` |
-| Arch、CachyOS、Manjaro 等（x86_64） | `FlowAcross_x.y.z_x86_64.pkg.tar.zst` | `sudo pacman -U 文件名.pkg.tar.zst` |
-| 其他 Linux 发行版（x86_64） | `FlowAcross_x.y.z_amd64.AppImage` | `chmod +x` 后直接运行 |
+| Windows 10 / 11（64 位） | [`FlowAcross_x64-setup.exe`](https://dl.bapihou.com/FlowAcross/latest/FlowAcross_x64-setup.exe) | 安装程序 |
+| macOS（Intel 和 Apple 芯片通用） | [`FlowAcross_universal.dmg`](https://dl.bapihou.com/FlowAcross/latest/FlowAcross_universal.dmg) | 打开后把 FlowAcross 拖进「应用程序」 |
+| Debian / Ubuntu（x86_64） | [`FlowAcross_amd64.deb`](https://dl.bapihou.com/FlowAcross/latest/FlowAcross_amd64.deb) | `sudo apt install ./文件名.deb` |
+| Arch、CachyOS、Manjaro 等（x86_64） | [`FlowAcross_x86_64.pkg.tar.zst`](https://dl.bapihou.com/FlowAcross/latest/FlowAcross_x86_64.pkg.tar.zst) | `sudo pacman -U 文件名.pkg.tar.zst` |
+| 其他 Linux 发行版（x86_64） | [`FlowAcross_amd64.AppImage`](https://dl.bapihou.com/FlowAcross/latest/FlowAcross_amd64.AppImage) | `chmod +x` 后直接运行 |
 
-其他文件（`.sig`、`.app.tar.gz`、`latest.json`）供应用内自动更新使用，不用下载。
+下载下来的文件名带版本号（如 `FlowAcross_0.2.3_x64-setup.exe`）。GitHub 发布页上的其他文件（`.sig`、`.app.tar.gz`、`latest.json`）供应用内自动更新使用，不用下载。
 
 Linux 版从 v0.2.2 起和 Windows、macOS 一起发布。[版本列表](https://github.com/Hearion/FlowAcross-releases/releases)里带 Pre-release 标记的是测试版（版本号带后缀，如 `v0.3.0-beta.1`），想提前试新功能可以装。
 
@@ -52,7 +52,7 @@ Linux 版从 v0.2.2 起和 Windows、macOS 一起发布。[版本列表](https:/
    - GNOME / KDE 上「停留一会儿才切换」不起作用，GNOME 上没有边缘浮光。
 4. Hyprland / Sway 上，通往其他电脑的那条屏幕边最外 1 个像素的点击会被流界挡住。
 5. GNOME 默认不显示托盘图标，需要安装 AppIndicator 扩展；开着防火墙时要手动放行流界。
-6. Linux 版暂时没有应用内自动更新，新版本要回到[最新版本](https://github.com/Hearion/FlowAcross-releases/releases/latest)页面手动下载。
+6. Linux 版暂时没有应用内自动更新，新版本要回到[官网](https://flow.bapihou.com/#download)或[最新版本](https://github.com/Hearion/FlowAcross-releases/releases/latest)页面手动下载。
 
 Linux 版仍在完善中：Hyprland 有用户实测可用，其他桌面还没有在真机上充分验证。遇到问题欢迎到 [Issues](https://github.com/Hearion/FlowAcross-releases/issues) 反馈，请附上发行版、桌面环境（合成器）及其版本。
 
@@ -75,7 +75,7 @@ Linux 版仍在完善中：Hyprland 有用户实测可用，其他桌面还没�
 
 ## 自动更新
 
-流界会在启动后和之后每隔 6 小时检查新版本，有更新时在主界面提示，点「立即更新」即可，安装完成后自动重新打开。也可以在「设置 → 软件更新」里手动检查，或关掉自动检查。
+流界会在启动后和之后每隔 6 小时检查新版本，有更新时在主界面提示，点「立即更新」即可，安装完成后自动重新打开。新版本从国内服务器下载，连不上时自动改从 GitHub 下载（0.2.3 及更早的版本只从 GitHub 下载，更新到下一个版本后就会用国内服务器）。也可以在「设置 → 软件更新」里手动检查，或关掉自动检查。
 
 更新包都带签名，流界下载后会先校验，确认来自官方发布才安装。两台电脑请尽量保持相同版本。
 

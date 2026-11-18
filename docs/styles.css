@@ -1540,6 +1540,41 @@ h3 {
   background: var(--grad-btn);
   filter: brightness(1.08);
 }
+/* Linux 卡片有三个安装包：卡片本身不是链接，三个按钮各自高亮，推荐时也不整排填色 */
+.dl-go-row {
+  display: flex;
+  align-self: stretch;
+  gap: 8px;
+}
+.dl-go-row .dl-go {
+  flex: 1;
+  min-width: 0;
+}
+.dl-card .dl-go-row .dl-go,
+.dl-card.recommended .dl-go-row .dl-go,
+.dl-card:hover .dl-go-row .dl-go {
+  border-color: var(--line-strong);
+  background: none;
+  color: inherit;
+  box-shadow: none;
+  filter: none;
+}
+.dl-card .dl-go-row .dl-go:hover,
+.dl-card .dl-go-row .dl-go:focus-visible {
+  border-color: transparent;
+  background: var(--grad-btn);
+  color: var(--on-accent);
+  box-shadow: var(--shadow-btn);
+}
+.dl-alt {
+  margin: 18px 0 0;
+  color: var(--fg-3);
+  font-size: 14px;
+  text-align: center;
+}
+.dl-alt a {
+  color: var(--accent);
+}
 .rec-label {
   margin-left: 8px;
   color: var(--accent);
@@ -1721,6 +1756,16 @@ h3 {
   .dl-go {
     align-self: center;
     min-height: 40px;
+  }
+  /* 三个按钮放不进一行，换到卡片下面 */
+  .dl-card.dl-wide {
+    flex-wrap: wrap;
+  }
+  .dl-card.dl-wide .dl-body {
+    flex: 1 1 0;
+  }
+  .dl-go-row {
+    flex-basis: 100%;
   }
 }
 
