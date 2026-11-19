@@ -50,7 +50,7 @@
             "name": "流界 FlowAcross 官网｜Mac、Windows、Linux 键鼠共享软件下载",
             "description": "让两台或多台电脑共用一套键盘鼠标，支持 Mac、Windows 和 Linux 之间跨屏控制，以及文字、文件和图片的跨设备复制粘贴。",
             "inLanguage": "zh-CN",
-            "dateModified": "2026-11-19",
+            "dateModified": "2026-11-20",
             "isPartOf": { "@id": "https://flow.bapihou.com/#website" },
             "mainEntity": { "@id": "https://flow.bapihou.com/#software" },
             "hasPart": { "@id": "https://flow.bapihou.com/#faq" }
@@ -143,7 +143,7 @@
                 "name": "支持 Linux 吗？Wayland 能用吗？",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "支持。Linux 版从 0.2.2 起和 Windows、macOS 版一起发布（x86_64，提供 .deb、Arch 系的 .pkg.tar.zst 和 .AppImage），到最新版本页面下载。X11 和 Wayland 会话都支持，启动时自动识别：Hyprland、Sway 不需要授权；GNOME（45 以上）和 KDE Plasma（6.1 以上）的 Wayland 会话通过系统的 portal 实现，首次使用要在系统弹窗里点允许，这部分还没有在真机上充分验证。Wayland 上系统不让程序看到全局键盘，所以「按住修饰键才切换」和在 Linux 本机按快捷键切到其他电脑暂时不起作用。Linux 版暂时没有应用内自动更新，要手动下载新版本；GNOME 默认不显示托盘图标，需要安装 AppIndicator 扩展；开着防火墙时要手动放行流界。"
+                  "text": "支持。Linux 版从 0.2.2 起和 Windows、macOS 版一起发布（x86_64，提供 .deb、Arch 系的 .pkg.tar.zst 和 .AppImage），到最新版本页面下载。X11 和 Wayland 会话都支持，启动时自动识别：Hyprland、Sway 不需要授权；GNOME（45 以上）和 KDE Plasma（6.1 以上）的 Wayland 会话通过系统的 portal 实现，首次使用要在系统弹窗里点允许，这部分还没有在真机上充分验证。Wayland 上系统不让程序看到全局键盘，所以「按住修饰键才切换」和在 Linux 本机按快捷键切到其他电脑不起作用；0.2.4 起可以在 Hyprland、Sway 里把快捷键绑到命令 flowacross --switch right 来代替。应用内自动更新从 0.2.4 起支持（.deb 和 Arch 安装包由系统的包管理器安装，会弹出授权窗口），0.2.3 及更早的版本要手动下载升级一次；GNOME 默认不显示托盘图标，需要安装 AppIndicator 扩展；开着防火墙时要手动放行流界。"
                 }
               },
               {
@@ -631,7 +631,7 @@
               <p>
                 支持。Linux 版从 0.2.2 起和 Windows、macOS 版一起发布（x86_64，提供 .deb、Arch 系的 .pkg.tar.zst 和 .AppImage），到<a href="https://github.com/Hearion/FlowAcross-releases/releases/latest">最新版本</a>页面下载。X11 和 Wayland 会话都支持，启动时自动识别：Hyprland、Sway 不需要授权；GNOME（45 以上）和 KDE Plasma（6.1
                 以上）的 Wayland 会话通过系统的 portal 实现，首次使用要在系统弹窗里点允许，这部分还没有在真机上充分验证。Wayland
-                上系统不让程序看到全局键盘，所以「按住修饰键才切换」和在 Linux 本机按快捷键切到其他电脑暂时不起作用。Linux 版暂时没有应用内自动更新，要手动下载新版本；GNOME
+                上系统不让程序看到全局键盘，所以「按住修饰键才切换」和在 Linux 本机按快捷键切到其他电脑不起作用；0.2.4 起可以在 Hyprland、Sway 里把快捷键绑到命令 flowacross --switch right 来代替。应用内自动更新从 0.2.4 起支持（.deb 和 Arch 安装包由系统的包管理器安装，会弹出授权窗口），0.2.3 及更早的版本要手动下载升级一次；GNOME
                 默认不显示托盘图标，需要安装 AppIndicator 扩展；开着防火墙时要手动放行流界。
               </p>
             </details>
@@ -690,6 +690,10 @@
           <a href="#download">下载</a>
           <a href="https://github.com/Hearion/FlowAcross-releases/releases">版本记录</a>
           <a href="#faq">常见问题</a>
+          <a href="https://github.com/Hearion/FlowAcross">源代码</a>
+          <a href="https://github.com/Hearion/FlowAcross/blob/main/LICENSE">开源许可（GPL-3.0）</a>
+          <a href="https://github.com/Hearion/FlowAcross/blob/main/PRIVACY.md">隐私说明</a>
+          <a href="https://github.com/Hearion/FlowAcross/blob/main/docs/code-signing-policy.md">代码签名政策</a>
         </nav>
         <small>© 2026 流界 FlowAcross</small>
       </div>

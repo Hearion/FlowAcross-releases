@@ -1710,6 +1710,8 @@ h3 {
 }
 .foot-links {
   display: flex;
+  /* 链接多了（源代码、许可、隐私、签名政策）在窄屏上要能换行。 */
+  flex-wrap: wrap;
   gap: 4px;
   margin-left: auto;
 }

@@ -18,7 +18,7 @@
 | Arch、CachyOS、Manjaro 等（x86_64） | [`FlowAcross_x86_64.pkg.tar.zst`](https://dl.bapihou.com/FlowAcross/latest/FlowAcross_x86_64.pkg.tar.zst) | `sudo pacman -U 文件名.pkg.tar.zst` |
 | 其他 Linux 发行版（x86_64） | [`FlowAcross_amd64.AppImage`](https://dl.bapihou.com/FlowAcross/latest/FlowAcross_amd64.AppImage) | `chmod +x` 后直接运行 |
 
-下载下来的文件名带版本号（如 `FlowAcross_0.2.3_x64-setup.exe`）。GitHub 发布页上的其他文件（`.sig`、`.app.tar.gz`、`latest.json`）供应用内自动更新使用，不用下载。
+下载下来的文件名带版本号（如 `FlowAcross_0.2.4_x64-setup.exe`）。GitHub 发布页上的其他文件（`.sig`、`.app.tar.gz`、`latest.json`）供应用内自动更新使用，不用下载。
 
 Linux 版从 v0.2.2 起和 Windows、macOS 一起发布。[版本列表](https://github.com/Hearion/FlowAcross-releases/releases)里带 Pre-release 标记的是测试版（版本号带后缀，如 `v0.3.0-beta.1`），想提前试新功能可以装。
 
@@ -44,15 +44,15 @@ Linux 版从 v0.2.2 起和 Windows、macOS 一起发布。[版本列表](https:/
    - 其他发行版：`.AppImage`，`chmod +x` 后直接运行
 2. X11 和 Wayland 会话都可以直接用，流界启动时自动识别：
    - **Hyprland、Sway** 等 wlroots 系合成器：不需要授权。
-   - **GNOME（45 以上）、KDE Plasma（6.1 以上）的 Wayland 会话**：通过系统的 portal 实现。第一次使用会弹出系统授权窗口，请点允许；键鼠捕获的授权每次启动流界都要再点一次。这部分还没有在真机上验证，可能有问题。
+   - **GNOME（45 以上）、KDE Plasma（6.1 以上）的 Wayland 会话**：通过系统的 portal 实现。第一次使用会弹出系统授权窗口，请点允许；键鼠捕获的授权每次启动流界都要再点一次。0.2.4 起弹窗限时 60 秒（流界主界面有倒计时），到时间没点会自动关闭；没授权的话，下次有设备连上或别的电脑把键鼠切过来时会再问，也可以点主界面的「重新授权」。这部分还没有在真机上验证，可能有问题。
    - **X11 会话**：不需要授权。
 3. Wayland 上暂时不起作用的功能（系统不让普通程序看到全局键盘），对应的选项在设置里不显示：
    - 「按住修饰键才切换」。
-   - 在 Linux 这台电脑上按 Ctrl + Alt + ←/→ 切到其他电脑。用鼠标推屏幕边切过去之后，再按这个快捷键切回来是可以的。
+   - 在 Linux 这台电脑上按 Ctrl + Alt + ←/→ 切到其他电脑。用鼠标推屏幕边切过去之后，再按这个快捷键切回来是可以的。0.2.4 起可以改用命令：在桌面自己的快捷键设置里绑定 `flowacross --switch right`（还可以是 `left`、`home` 或设备名称），Hyprland、Sway 上就能用快捷键切出去了；例如 Hyprland 的配置里写 `bind = CTRL ALT, right, exec, flowacross --switch right`。GNOME / KDE 的 Wayland 上键鼠在本机时这条命令切不出去。
    - GNOME / KDE 上「停留一会儿才切换」不起作用，GNOME 上没有边缘浮光。
 4. Hyprland / Sway 上，通往其他电脑的那条屏幕边最外 1 个像素的点击会被流界挡住。
 5. GNOME 默认不显示托盘图标，需要安装 AppIndicator 扩展；开着防火墙时要手动放行流界。
-6. Linux 版暂时没有应用内自动更新，新版本要回到[官网](https://flow.bapihou.com/#download)或[最新版本](https://github.com/Hearion/FlowAcross-releases/releases/latest)页面手动下载。
+6. 应用内自动更新从 0.2.4 起支持：AppImage 直接替换文件；用 `.deb` 或 Arch 安装包装的，下载并校验签名后交给系统的包管理器安装，这时系统会弹出授权窗口要你输入密码（Sway、Hyprland 上要有 polkit 认证代理在运行才会弹）。0.2.3 及更早的 `.deb` / Arch 版本没有这个功能，要到[官网](https://flow.bapihou.com/#download)或[最新版本](https://github.com/Hearion/FlowAcross-releases/releases/latest)页面手动升级一次；自己编译的版本只提示有新版本，不自动安装。
 
 Linux 版仍在完善中：Hyprland 有用户实测可用，其他桌面还没有在真机上充分验证。遇到问题欢迎到 [Issues](https://github.com/Hearion/FlowAcross-releases/issues) 反馈，请附上发行版、桌面环境（合成器）及其版本。
 
@@ -69,6 +69,11 @@ Linux 版仍在完善中：Hyprland 有用户实测可用，其他桌面还没�
 - **用 Windows 键盘控制 Mac**：在 Mac 的「设置 → 跨屏与键鼠 → Windows 键盘的修饰键」里选择 Ctrl、Win、Alt 对应 Mac 的哪个键。
 - **屏幕熄灭了也能切过去**（0.2.3 起）：被控制的电脑熄屏后，键鼠照样能切过去，屏幕会自动亮起来。切不过去的时候，在主界面选中那台设备点「唤醒屏幕」（两台电脑都要是 0.2.3 或更新的版本）。
 - **保持屏幕常亮**（0.2.3 起）：不想让某台电脑自动熄屏，就在那台电脑的「设置 → 通用」里打开「保持屏幕常亮」，连着其他电脑时它的屏幕不会自己熄灭，不影响手动锁屏。Linux 上需要桌面提供屏幕保护服务（GNOME、KDE、Xfce 等都有）；做不到时开关是灰的，旁边会写明原因。
+- **自定义快捷键**（0.2.4 起）：在「设置 → 快捷键」里改切到左边、右边电脑的快捷键，也可以给某台电脑单独设一个「切到它」的快捷键。
+- **把按键发给另一台电脑**（0.2.4 起）：在「设置 → 快捷键」里添加映射，例如在这台按 Ctrl + Alt + S，另一台收到 S，不用先把键鼠切过去（两台电脑都要是 0.2.4 或更新的版本）。
+- **不推鼠标也能切**（0.2.4 起）：托盘（菜单栏）图标的「把键鼠切到」、设备详情里的按钮，或命令 `flowacross --switch right`（还可以是 `left`、`home` 或设备名称），都能把键鼠切到指定的电脑。
+- **设备布局自动同步**（0.2.4 起）：在一台电脑上拖动屏幕位置，其他电脑的布局跟着变，不用每台各摆一遍（都要是 0.2.4 或更新的版本）。不想同步就在「设置 → 通用」里关掉「同步设备布局」。
+- **连不上时会说明原因**（0.2.4 起）：设备连不上或配对失败时，流界会写出可能的原因（没找到设备、不在同一个网络、被防火墙拦住、版本不一致等）和处理步骤。电脑睡眠唤醒后会自动重连；对方停在锁屏界面时会标出「已锁屏」。
 - **暂停与锁定**：暂停共享或暂停某台设备时，双向的键鼠、剪贴板和文件共享都会停下，其他电脑控制不了这台。「锁定在本机」只阻止键鼠从这台切出去，其他电脑仍然可以切过来，剪贴板和文件照常共享。
 
 配对新设备需要两台电脑都更新到最新版本；已经配对过的设备不受影响。
@@ -77,7 +82,7 @@ Linux 版仍在完善中：Hyprland 有用户实测可用，其他桌面还没�
 
 流界会在启动后和之后每隔 6 小时检查新版本，有更新时在主界面提示，点「立即更新」即可，安装完成后自动重新打开。新版本从国内服务器下载，连不上时自动改从 GitHub 下载（0.2.3 及更早的版本只从 GitHub 下载，更新到下一个版本后就会用国内服务器）。也可以在「设置 → 软件更新」里手动检查，或关掉自动检查。
 
-更新包都带签名，流界下载后会先校验，确认来自官方发布才安装。两台电脑请尽量保持相同版本。
+更新包都带签名，流界下载后会先校验，确认来自官方发布才安装。两台电脑请尽量保持相同版本。Linux 版从 0.2.4 起也支持，各种安装包的装法见上面「安装 › Linux」第 6 条。
 
 ## 已知限制
 
@@ -87,7 +92,7 @@ Linux 版仍在完善中：Hyprland 有用户实测可用，其他桌面还没�
 - 屏幕被唤醒后如果停在锁屏界面，密码要在那台电脑上自己输，其他电脑的键盘输不进去。
 - 公司网络、酒店和公共 Wi‑Fi 常会屏蔽设备发现，可以先用家里的网络或手机热点测试。
 - Mac 使用 Wi‑Fi 时，跨屏可能每秒卡一下。这是 macOS 的 AWDL（隔空投送、接力、通用控制用的点对点 Wi‑Fi）定期切换信道造成的网络停顿。在 Mac 的流界里打开「设置 → 跨屏与键鼠 → 低延迟模式」即可解决：有电脑连着时自动关闭 AWDL，断开后恢复（开启期间隔空投送、接力、通用控制暂不可用，第一次开启需要输入一次 Mac 密码）。Mac 接有线网络时不需要开启。
-- Linux 版仍在完善中：没有应用内自动更新；Wayland 上的限制见上面的「安装 › Linux」。
+- Linux 版仍在完善中：Wayland 上的限制、应用内更新的条件见上面的「安装 › Linux」。
 - 剪贴板同步文字、文件和图片（截图），富文本格式暂不同步。图片直接粘贴需要两台电脑都是 0.2.0 或更新的版本，单张不超过 64 MB；旧版设备收到的是一个 PNG 文件。
 
 ## 遇到问题
@@ -100,7 +105,7 @@ Linux 版仍在完善中：Hyprland 有用户实测可用，其他桌面还没�
 
 ---
 
-本仓库只存放安装包、更新文件和官网页面（`docs/`），不包含源代码。
+本仓库只存放安装包、更新文件和官网页面（`docs/`），不包含源代码。流界是开源软件，以 [GNU GPL v3.0](https://github.com/Hearion/FlowAcross/blob/main/LICENSE)（GPL-3.0-only）发布，源代码和构建方法在 [Hearion/FlowAcross](https://github.com/Hearion/FlowAcross)；另见[隐私说明](https://github.com/Hearion/FlowAcross/blob/main/PRIVACY.md)和[代码签名政策](https://github.com/Hearion/FlowAcross/blob/main/docs/code-signing-policy.md)。
 
 ## 官网维护
 
